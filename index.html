@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Line-Coupled Language Model - Li, Zhang, Yang, Zhang, Ver Steeg, Li">
+  <meta name="description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
+  <meta name="keywords" content="language models, parallel decoding, autoregressive generation, multi-token prediction, natural language processing, NLP">
+  <meta name="author" content="Shiyun Li, Shaorong Zhang, Zhaorui Yang, Qian Zhang, Greg Ver Steeg, Bingyao Li">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="University of California, Riverside">
+  <meta property="og:title" content="Line-Coupled Language Model">
+  <meta property="og:description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
+  <!-- TODO: replace with the final GitHub Pages URL once the public repo/org name is confirmed -->
+  <meta property="og:url" content="https://TODO_ORG.github.io/TODO_REPO/">
+  <!-- TODO: generate a 1200x630 social preview card and point this at it (see original release checklist) -->
+  <meta property="og:image" content="https://TODO_ORG.github.io/TODO_REPO/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Line-Coupled Language Model - overview figure">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Line-Coupled Language Model">
+  <meta name="twitter:description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
+  <meta name="twitter:image" content="https://TODO_ORG.github.io/TODO_REPO/static/images/social_preview.png">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="Line-Coupled Language Model">
+  <meta name="citation_author" content="Li, Shiyun">
+  <meta name="citation_author" content="Zhang, Shaorong">
+  <meta name="citation_author" content="Yang, Zhaorui">
+  <meta name="citation_author" content="Zhang, Qian">
+  <meta name="citation_author" content="Ver Steeg, Greg">
+  <meta name="citation_author" content="Li, Bingyao">
+  <!-- TODO: fill in once arXiv is live -->
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="Preprint - submitted to ACL Rolling Review">
+  <meta name="citation_pdf_url" content="paper.pdf">
+
+  <meta name="theme-color" content="#2563eb">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <title>Line-Coupled Language Model</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Line-Coupled Language Model</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: add each author's homepage link when available -->
+              <span class="author-block">Shiyun Li,</span>
+              <span class="author-block">Shaorong Zhang,</span>
+              <span class="author-block">Zhaorui Yang,</span>
+              <span class="author-block">Qian Zhang,</span>
+              <span class="author-block">Greg Ver Steeg,</span>
+              <span class="author-block">Bingyao Li</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">University of California, Riverside<br>Preprint &middot; submitted to ACL Rolling Review</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- TODO: point at the final camera-ready PDF path once frozen -->
+                <span class="link-block">
+                  <a href="paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- TODO: swap for the live arXiv abstract URL once the identifier is assigned -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark" aria-disabled="true" title="arXiv submission in processing">
+                    <span class="icon"><i class="fas fa-scroll"></i></span>
+                    <span>arXiv (pending)</span>
+                  </a>
+                </span>
+
+                <!-- TODO: point at the public repo once release/lclm-public is promoted -->
+                <span class="link-block">
+                  <a href="https://github.com/TODO_ORG/TODO_REPO" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TL;DR -->
+  <section class="hero is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <p class="is-size-4">
+          <strong>TL;DR:</strong> LCLM advances several text lines together in one forward pass, producing
+          <strong>2.94 content tokens per forward</strong> at only a
+          <strong>0.015 BPB gap</strong> to a matched autoregressive baseline.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live generation comparison -->
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-4 has-text-centered">Real generation, side by side</h2>
+      <p class="has-text-centered" style="max-width:640px;margin:0 auto 1rem;color:#666;font-size:.9rem;">
+        Real output, not a schematic &mdash; pick any of the 13 real matched prompts below, including ones where LCLM barely gets to use parallelism.
+      </p>
+      <iframe src="gen-compare.html" title="LCLM vs Vanilla AR real generation comparison"
+              style="width:100%;height:680px;border:1px solid #e2e1dc;border-radius:10px;" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- Hero figure -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body has-text-centered">
+        <!--
+          TODO(design): this is a static placeholder, not the animated GIF that was asked for.
+          This is the paper's Figure 1 (paper/figures/decoding_schedules.pdf), rendered to PNG
+          at 300dpi. It already shows a 5-step decoding progression (step=0..4), so it's a
+          natural candidate to animate later if wanted - flagged to the user, not done yet.
+        -->
+        <figure class="image publication-banner">
+          <img src="static/images/hero-decoding-schedules.png" alt="Comparison of block diffusion, MTP, and LCLM decoding schedules. LCLM has low training overhead, scalable parallelism, and full acceptance, advancing multiple lines in parallel with standard causal attention.">
+        </figure>
+        <h2 class="subtitle has-text-centered">
+          LCLM keeps standard causal attention while advancing multiple lines in parallel &mdash; every prediction is retained as output, unlike MTP's rejected proposals or block diffusion's partial unmasking.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content: at most three short paragraphs -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths content">
+
+          <h2 class="title is-4">Why lines</h2>
+          <p>
+            Autoregressive language models generate one token per forward pass, capping how much useful output each step produces.
+            Diffusion, insertion-based decoding, and multi-token prediction relax this, but either add training-time token traffic or struggle when future tokens strongly depend on each other.
+          </p>
+
+          <h2 class="title is-4">Method</h2>
+          <p>
+            LCLM treats each text line as its own generation thread: every active line predicts its next token in the same forward pass, interleaved into a single causal sequence via line-staggered rotary positions.
+            Training and decoding stay standard next-token prediction with causal attention &mdash; no auxiliary heads, no verification step.
+          </p>
+
+          <h2 class="title is-4">Result</h2>
+          <p>
+            At 881M parameters, LCLM reaches 2.94 content tokens per forward pass at a 0.015 BPB gap to a matched autoregressive baseline (0.728 vs. 0.713 BPB at 15.5B training tokens), and the gap stays small (&le;0.028 BPB) even as the active-line count climbs past 16.
+            Full ablations, CORE benchmark results, and limitations are in the paper.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <!-- TODO: fill in the arXiv id once assigned -->
+      <pre id="bibtex-code"><code>@article{li2026linecoupled,
+  title={Line-Coupled Language Model},
+  author={Li, Shiyun and Zhang, Shaorong and Yang, Zhaorui and Zhang, Qian and Ver Steeg, Greg and Li, Bingyao},
+  journal={arXiv preprint arXiv:TODO.TODO},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
