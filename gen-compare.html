@@ -9,6 +9,7 @@
     --accent-1:#2563eb; --accent-2:#7c3aed;
   }
   * { box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
   body {
     margin: 0; padding: 18px;
     font-family: 'Inter', ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -19,8 +20,6 @@
     color: var(--blue); background: var(--blue-pale); border-radius: 999px;
     padding: 3px 10px; margin-bottom: 6px;
   }
-  .subnote { font-size: .74rem; color: var(--muted); margin: 0 0 12px 0; }
-
   /* Horizontally scrollable example picker */
   #picker {
     display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 16px;
@@ -53,7 +52,7 @@
   .col h4 .stat { font-variant-numeric: tabular-nums; color: var(--blue); font-weight: 700; }
   .box {
     background: #fafaf8; border: 1px solid var(--line); border-radius: 8px;
-    padding: 10px 12px; min-height: 190px; max-height: 340px; overflow-y: auto;
+    padding: 10px 12px; height: 480px; overflow-y: auto;
     font-size: .84rem; line-height: 1.5;
   }
   .ar-text { white-space: pre-wrap; word-break: break-word; }
@@ -66,6 +65,10 @@
     display: inline-block; width: 2px; height: 1em; background: var(--blue);
     vertical-align: text-bottom; animation: blink 1s steps(1) infinite;
   }
+  .new-tok {
+    background: #fde68a; box-shadow: 0 0 0 1px rgba(217,119,6,.3);
+    border-radius: 3px; padding: 0 1px;
+  }
   @keyframes blink { 50% { opacity: 0; } }
   .note { font-size: .72rem; color: var(--muted); margin-top: 10px; }
   .fail-flag {
@@ -77,10 +80,6 @@
 <body>
 
 <span class="badge">Real output &middot; matched 881M-parameter (depth-24) checkpoints, ClimbMix-trained</span>
-<p class="subnote">
-  All 13 real matched-prompt traces from this dump are here, not a cherry-picked pair &mdash;
-  including cases where LCLM barely uses parallelism on that prompt. Pick any one below.
-</p>
 
 <div id="picker"></div>
 <div id="stage"></div>
@@ -93,6 +92,10 @@ const STEP_MS = 90;
 const HOLD_MS = 1800;
 
 let activeTimer = null;
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
 function stopActive() {
   if (activeTimer) { clearTimeout(activeTimer); activeTimer = null; }
@@ -125,7 +128,7 @@ function show(ex, idx) {
 
   const arCol = document.createElement('div');
   arCol.className = 'col';
-  arCol.innerHTML = '<h4>Vanilla AR</h4><div class="box"><span class="ar-text" data-role="ar-text"></span><span class="cursor"></span></div>';
+  arCol.innerHTML = '<h4>Vanilla AR <span class="stat">1 tok/step</span></h4><div class="box"><span class="ar-text" data-role="ar-text"></span><span class="cursor"></span></div>';
   cols.appendChild(arCol);
 
   const lcCol = document.createElement('div');
@@ -150,14 +153,18 @@ function show(ex, idx) {
   });
 
   const arTextEl = arCol.querySelector('[data-role="ar-text"]');
+  const arBox = arCol.querySelector('.box');
   const lcStatEl = lcCol.querySelector('[data-role="lc-stat"]');
 
   let step = 0;
 
   function render() {
-    let arOut = '';
-    for (let i = 0; i < ex.ar.length && i < step; i++) arOut += ex.ar[i];
-    arTextEl.textContent = arOut;
+    // AR reveals exactly one token per step -- split into "already shown"
+    // vs. "revealed this step" so the newest one can be highlighted.
+    let arPrior = '';
+    for (let i = 0; i < ex.ar.length && i < step - 1; i++) arPrior += ex.ar[i];
+    const arNew = (step >= 1 && step <= ex.ar.length) ? ex.ar[step - 1] : '';
+    arTextEl.innerHTML = esc(arPrior) + (arNew ? `<span class="new-tok">${esc(arNew)}</span>` : '');
 
     let tokThisStep = 0;
     ex.lines.forEach((line, i) => {
@@ -168,12 +175,19 @@ function show(ex, idx) {
         el.textContent = `line ${i + 1} — not active yet`;
       } else {
         el.classList.remove('pending');
-        el.textContent = toks.map(t => t.char).join('');
-        if (toks[toks.length - 1].step === step) tokThisStep++;
+        const isNew = toks[toks.length - 1].step === step;
+        if (isNew) tokThisStep++;
+        const prior = (isNew ? toks.slice(0, -1) : toks).map(t => t.char).join('');
+        const last = isNew ? toks[toks.length - 1].char : '';
+        el.innerHTML = esc(prior) + (isNew ? `<span class="new-tok">${esc(last)}</span>` : '');
       }
     });
     lcStatEl.textContent = tokThisStep + ' tok/step';
     note.textContent = `Showing ${ex.shownLines} of ${ex.totalLines} lines LCLM actually kept active on this prompt, capped for legibility. Step ${step}/${ex.maxStep}.`;
+
+    // follow the newest content instead of staying pinned at the top
+    arBox.scrollTop = arBox.scrollHeight;
+    lcBox.scrollTop = lcBox.scrollHeight;
   }
 
   function tick() {
