@@ -33,16 +33,19 @@ folder for GitHub Pages (repo settings → Pages → deploy from `/docs`).
   with "soda vs powder" / "used bicycle" (`LEAD_TOPICS` in that script) — the same two prompts
   already published in the paper's qualitative appendix, not a fresh pick — then the other 11
   follow in file order. All 13 stay in the picker; this only reorders display, nothing is hidden.
-- `paper.pdf` — **not present yet**. Drop the deanonymized, public paper PDF here before deploying.
+- `paper.pdf` — the current arXiv-version paper PDF.
 
 ## Known placeholders (grep `TODO` in `index.html`)
 
-- `TODO_ORG` / `TODO_REPO` — GitHub org/user + repo name (og:url, twitter:image, Code button).
-  Currently proposed as `line-coupled-lm`, unconfirmed.
 - arXiv link + BibTeX `arXiv:TODO.TODO` — fill in once the identifier is assigned.
 - Author personal-page links — none wired in yet.
 - Social preview image (1200x630) — not generated yet.
-- `paper.pdf` — needs to exist alongside `index.html` before the Paper button works.
+
+## Release links already wired
+
+- Code: `https://github.com/duoduoyeah/lclm`
+- Model: `https://huggingface.co/duoduoyeah/nanochat-d24-blockmt-v4-r20`
+- Project page: `https://duoduoyeah.github.io/lclm-project-page/`
 
 ## Not done on purpose (explicitly asked for a concise first pass)
 

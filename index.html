@@ -8,7 +8,7 @@
   <meta name="title" content="Line-Coupled Language Model - Li, Zhang, Yang, Zhang, Ver Steeg, Li">
   <meta name="description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
   <meta name="keywords" content="language models, parallel decoding, autoregressive generation, multi-token prediction, natural language processing, NLP">
-  <meta name="author" content="Shiyun Li, Shaorong Zhang, Zhaorui Yang, Qian Zhang, Greg Ver Steeg, Bingyao Li">
+  <meta name="author" content="Shiyuan Li, Shaorong Zhang, Zhaorui Yang, Qian Zhang, Greg Ver Steeg, Bingyao Li">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
 
@@ -17,10 +17,9 @@
   <meta property="og:site_name" content="University of California, Riverside">
   <meta property="og:title" content="Line-Coupled Language Model">
   <meta property="og:description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
-  <!-- TODO: replace with the final GitHub Pages URL once the public repo/org name is confirmed -->
-  <meta property="og:url" content="https://TODO_ORG.github.io/TODO_REPO/">
+  <meta property="og:url" content="https://duoduoyeah.github.io/lclm-project-page/">
   <!-- TODO: generate a 1200x630 social preview card and point this at it (see original release checklist) -->
-  <meta property="og:image" content="https://TODO_ORG.github.io/TODO_REPO/static/images/social_preview.png">
+  <meta property="og:image" content="https://duoduoyeah.github.io/lclm-project-page/static/images/social_preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Line-Coupled Language Model - overview figure">
@@ -29,11 +28,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Line-Coupled Language Model">
   <meta name="twitter:description" content="LCLM advances multiple text lines per forward pass, producing 2.94 content tokens per forward at only a 0.015 BPB gap to a matched autoregressive baseline.">
-  <meta name="twitter:image" content="https://TODO_ORG.github.io/TODO_REPO/static/images/social_preview.png">
+  <meta name="twitter:image" content="https://duoduoyeah.github.io/lclm-project-page/static/images/social_preview.png">
 
   <!-- Academic/Research Specific -->
   <meta name="citation_title" content="Line-Coupled Language Model">
-  <meta name="citation_author" content="Li, Shiyun">
+  <meta name="citation_author" content="Li, Shiyuan">
   <meta name="citation_author" content="Zhang, Shaorong">
   <meta name="citation_author" content="Yang, Zhaorui">
   <meta name="citation_author" content="Zhang, Qian">
@@ -42,9 +41,11 @@
   <!-- TODO: fill in once arXiv is live -->
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="Preprint - submitted to ACL Rolling Review">
-  <meta name="citation_pdf_url" content="paper.pdf">
+  <meta name="citation_pdf_url" content="https://duoduoyeah.github.io/lclm-project-page/paper.pdf">
 
   <meta name="theme-color" content="#2563eb">
+
+  <link rel="canonical" href="https://duoduoyeah.github.io/lclm-project-page/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,12 +78,16 @@
             <h1 class="title is-1 publication-title">Line-Coupled Language Model</h1>
             <div class="is-size-5 publication-authors">
               <!-- TODO: add each author's homepage link when available -->
-              <span class="author-block">Shiyun Li,</span>
-              <span class="author-block">Shaorong Zhang,</span>
+              <span class="author-block">Shiyuan Li<sup>*</sup>,</span>
+              <span class="author-block">Shaorong Zhang<sup>*</sup>,</span>
               <span class="author-block">Zhaorui Yang,</span>
               <span class="author-block">Qian Zhang,</span>
               <span class="author-block">Greg Ver Steeg,</span>
               <span class="author-block">Bingyao Li</span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal contribution.</span>
             </div>
 
             <div class="is-size-5 publication-authors">
@@ -91,7 +96,7 @@
 
             <div class="column has-text-centered">
               <div class="publication-links">
-                <!-- TODO: point at the final camera-ready PDF path once frozen -->
+                <!-- This is the current arXiv-version PDF; replace it if a newer public version is released. -->
                 <span class="link-block">
                   <a href="paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
@@ -107,11 +112,17 @@
                   </a>
                 </span>
 
-                <!-- TODO: point at the public repo once release/lclm-public is promoted -->
                 <span class="link-block">
-                  <a href="https://github.com/TODO_ORG/TODO_REPO" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://github.com/duoduoyeah/lclm" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://huggingface.co/duoduoyeah/nanochat-d24-blockmt-v4-r20" target="_blank" rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-cube"></i></span>
+                    <span>Model</span>
                   </a>
                 </span>
 
@@ -216,7 +227,7 @@
       <!-- TODO: fill in the arXiv id once assigned -->
       <pre id="bibtex-code"><code>@article{li2026linecoupled,
   title={Line-Coupled Language Model},
-  author={Li, Shiyun and Zhang, Shaorong and Yang, Zhaorui and Zhang, Qian and Ver Steeg, Greg and Li, Bingyao},
+  author={Li, Shiyuan and Zhang, Shaorong and Yang, Zhaorui and Zhang, Qian and Ver Steeg, Greg and Li, Bingyao},
   journal={arXiv preprint arXiv:TODO.TODO},
   year={2026}
 }</code></pre>
