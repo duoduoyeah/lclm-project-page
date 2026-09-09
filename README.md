@@ -37,7 +37,6 @@ folder for GitHub Pages (repo settings → Pages → deploy from `/docs`).
 
 ## Known placeholders (grep `TODO` in `index.html`)
 
-- arXiv link + BibTeX `arXiv:TODO.TODO` — fill in once the identifier is assigned.
 - Author personal-page links — none wired in yet.
 - Social preview image (1200x630) — not generated yet.
 
@@ -45,6 +44,7 @@ folder for GitHub Pages (repo settings → Pages → deploy from `/docs`).
 
 - Code: `https://github.com/duoduoyeah/lclm`
 - Model: `https://huggingface.co/duoduoyeah/nanochat-d24-blockmt-v4-r20`
+- arXiv: `https://arxiv.org/abs/2609.07129`
 - Project page: `https://duoduoyeah.github.io/lclm-project-page/`
 
 ## Not done on purpose (explicitly asked for a concise first pass)
